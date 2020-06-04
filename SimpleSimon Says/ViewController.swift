@@ -9,11 +9,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    
-    var roundCount: Int = 1
-    var challengeArray: [Int] = []
-    var playerArray: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,53 +16,98 @@ class ViewController: UIViewController {
     }
     
     @IBOutlet weak var buttonOne: UIButton!
-    
-    
-    
-    @IBAction func startButton(_ sender: Any) {
-        //Generate random array
-        challengeArray = (1...roundCount).map{_ in Int.random(in: 1...4)}
-        print(challengeArray)
-        
-//        buttonOne.backgroundColor = UIColor.init(displayP3Red: 13/255, green: 153/255, blue: 10/255, alpha: 0.3)
-    }
-    
-    @IBAction func submitButton(_ sender: UIButton) {
-        if playerArray == challengeArray {
-            roundCount += 1
-            roundCounter.text = "Round: \(roundCount)"
-            playerArray = []
-        } else {
-            roundCounter.text = "You Lose"
+    @IBOutlet weak var buttonTwo: UIButton!
+    @IBOutlet weak var buttonThree: UIButton!
+    @IBOutlet weak var buttonFour: UIButton!
+    @IBOutlet weak var gameStatus: UILabel!
+
+    var isWatching = true {
+        didSet {
+            if isWatching {
+                gameStatus.text = "WATCH"
+            } else {
+                gameStatus.text = "REPEAT"
+            }
         }
     }
+    var sequence = [UIButton]()
+    var sequenceIndex = 0
     
-    @IBAction func resetButton(_ sender: Any) {
-        roundCount = 1
-        challengeArray = []
-        playerArray = []
-        roundCounter.text = "Round: \(roundCount)"
+    // Adds next color to the sequence
+    func addToSequence() {
+        let colors: [UIButton] = [buttonOne, buttonTwo, buttonThree, buttonFour]
+        sequence.append(colors.randomElement()!)
+        
+        
+        sequenceIndex = 0
+        isWatching = true
+        
+        DispatchQueue.main.asyncAfter(wallDeadline: .now() + 1) {
+            self.playNextSequenceItem()
+        }
+    }
+    // Plays sequence for the player to watch
+    func playNextSequenceItem() {
+        guard sequenceIndex < sequence.count else {
+            isWatching = false
+            sequenceIndex = 0
+            return
+        }
+        
+        let button = sequence[sequenceIndex]
+        sequenceIndex += 1
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            button.setTitle("*", for: .normal)
+            
+            DispatchQueue.main.asyncAfter(deadline: . now() + 0.5) {
+                button.setTitle("", for: .normal)
+                self?.playNextSequenceItem()
+            }
+            
+        }
+    }
+    //Player Control
+    func makeMove(_ color: UIButton) {
+        guard isWatching == false else {
+            return
+        }
+        
+        if sequence[sequenceIndex] == color {
+            sequenceIndex += 1
+            
+            if sequenceIndex == sequence.count {
+                addToSequence()
+            }
+        } else {
+            gameStatus.text = "Game Over! You scored \(sequence.count - 1)."
+            
+        }
+    }
+    //Starts Game
+    @IBAction func startButton(_ sender: Any) {
+        sequence.removeAll()
+        addToSequence()
+    }
+    //Player Interaction
+    @IBAction func buttonOneTapped(_ sender: UIButton) {
+        makeMove(buttonOne)
     }
     
-    @IBAction func buttonOne(_ sender: UIButton) {
-        playerArray.append(1)
-        print(playerArray)
+    @IBAction func buttonTwoTapped(_ sender: UIButton) {
+        makeMove(buttonTwo)
     }
     
-    @IBAction func buttonTwo(_ sender: UIButton) {
-        playerArray.append(2)
+    @IBAction func buttonThreeTapped(_ sender: UIButton) {
+        makeMove(buttonThree)
     }
     
-    @IBAction func buttonThree(_ sender: UIButton) {
-        playerArray.append(3)
-    }
-    
-    @IBAction func buttonFour(_ sender: UIButton) {
-        playerArray.append(4)
+    @IBAction func buttonFourTapped(_ sender: UIButton) {
+        makeMove(buttonFour)
     }
     
 
-    @IBOutlet weak var roundCounter: UILabel!
+
     
 }
 
