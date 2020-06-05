@@ -13,6 +13,7 @@
 		55F3FA14248431DA00161151 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F3FA12248431DA00161151 /* Main.storyboard */; };
 		55F3FA16248431DD00161151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55F3FA15248431DD00161151 /* Assets.xcassets */; };
 		55F3FA19248431DD00161151 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 55F3FA17248431DD00161151 /* LaunchScreen.storyboard */; };
+		55F3FA21248AD56F00161151 /* setBackgroundColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F3FA20248AD56F00161151 /* setBackgroundColorExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		55F3FA15248431DD00161151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55F3FA18248431DD00161151 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		55F3FA1A248431DD00161151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55F3FA20248AD56F00161151 /* setBackgroundColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setBackgroundColorExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				55F3FA0C248431DA00161151 /* AppDelegate.swift */,
 				55F3FA0E248431DA00161151 /* SceneDelegate.swift */,
+				55F3FA20248AD56F00161151 /* setBackgroundColorExtension.swift */,
 				55F3FA10248431DA00161151 /* ViewController.swift */,
 				55F3FA12248431DA00161151 /* Main.storyboard */,
 				55F3FA15248431DD00161151 /* Assets.xcassets */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F3FA21248AD56F00161151 /* setBackgroundColorExtension.swift in Sources */,
 				55F3FA11248431DA00161151 /* ViewController.swift in Sources */,
 				55F3FA0D248431DA00161151 /* AppDelegate.swift in Sources */,
 				55F3FA0F248431DA00161151 /* SceneDelegate.swift in Sources */,

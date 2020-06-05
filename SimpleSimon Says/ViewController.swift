@@ -58,10 +58,34 @@ class ViewController: UIViewController {
         sequenceIndex += 1
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            button.setTitle("*", for: .normal)
+            
+            switch button {
+            case self?.buttonOne:
+                button.setBackgroundColor(.green,for: .normal)
+            case self?.buttonTwo:
+                button.setBackgroundColor(.red,for: .normal)
+            case self?.buttonThree:
+                button.setBackgroundColor(.yellow,for: .normal)
+            case self?.buttonFour:
+                button.setBackgroundColor(.blue,for: .normal)
+            default:
+                print("No button used")
+            }
             
             DispatchQueue.main.asyncAfter(deadline: . now() + 0.5) {
-                button.setTitle("", for: .normal)
+                
+                switch button {
+                case self?.buttonOne:
+                    button.setBackgroundColor(.systemGreen,for: .normal)
+                case self?.buttonTwo:
+                    button.setBackgroundColor(.systemRed,for: .normal)
+                case self?.buttonThree:
+                    button.setBackgroundColor(.systemYellow,for: .normal)
+                case self?.buttonFour:
+                    button.setBackgroundColor(.systemBlue,for: .normal)
+                default:
+                    print("No button used")
+                }
                 self?.playNextSequenceItem()
             }
             
