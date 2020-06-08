@@ -7,6 +7,12 @@
 //
 
 import UIKit
+import AVFoundation
+
+let systemSoundIDButtonOne: SystemSoundID = 1201
+let systemSoundIDButtonTwo: SystemSoundID = 1202
+let systemSoundIDButtonThree: SystemSoundID = 1203
+let systemSoundIDButtonFour: SystemSoundID = 1204
 
 class ViewController: UIViewController {
     
@@ -62,12 +68,16 @@ class ViewController: UIViewController {
             switch button {
             case self?.buttonOne:
                 button.setBackgroundColor(.green,for: .normal)
+                AudioServicesPlaySystemSound (systemSoundIDButtonOne)
             case self?.buttonTwo:
                 button.setBackgroundColor(.red,for: .normal)
+                AudioServicesPlaySystemSound (systemSoundIDButtonTwo)
             case self?.buttonThree:
                 button.setBackgroundColor(.yellow,for: .normal)
+                AudioServicesPlaySystemSound (systemSoundIDButtonThree)
             case self?.buttonFour:
                 button.setBackgroundColor(.blue,for: .normal)
+                AudioServicesPlaySystemSound (systemSoundIDButtonFour)
             default:
                 print("No button used")
             }
@@ -116,18 +126,22 @@ class ViewController: UIViewController {
     //Player Interaction
     @IBAction func buttonOneTapped(_ sender: UIButton) {
         makeMove(buttonOne)
+        AudioServicesPlaySystemSound (systemSoundIDButtonOne)
     }
     
     @IBAction func buttonTwoTapped(_ sender: UIButton) {
         makeMove(buttonTwo)
+        AudioServicesPlaySystemSound (systemSoundIDButtonTwo)
     }
     
     @IBAction func buttonThreeTapped(_ sender: UIButton) {
         makeMove(buttonThree)
+        AudioServicesPlaySystemSound (systemSoundIDButtonThree)
     }
     
     @IBAction func buttonFourTapped(_ sender: UIButton) {
         makeMove(buttonFour)
+        AudioServicesPlaySystemSound (systemSoundIDButtonFour)
     }
     
 
